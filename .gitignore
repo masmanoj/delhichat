@@ -1,4 +1,3 @@
-n
 build
 repos
 .classpath
@@ -23,3 +22,5 @@ rebel.xml
 *~
 .metadata
 /bin/
+/src/main/webapp/bower_components/
+
