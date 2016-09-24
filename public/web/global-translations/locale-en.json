@@ -1,0 +1,64 @@
+{
+	"---titles----":"",
+    "title.dashboard": "Dashboard",
+
+    "---headings----":"",
+    "heading.login.welcome.to.dash.board":"Welcome to the Dashboard!",
+    "heading.panel.main.dashboard": "New Orders",
+    "heading.page.admin.tags" : "Tags",
+    "heading.page.subtags" : "Subtags",
+    "heading.table.tag" : "Tag",
+    "heading.table.label" : "Label",
+    "heading.table.subtag": "Subtag",
+    "heading.table.subtag.display.order":"Display Order",
+    "heading.page.admin.products":"Products",
+    "heading.page.admin.products.create":"Create New Product",
+    "heading.page.admin.products.view":"View Product",
+    "heading.page.admin.products.edit":"Edit Product",
+    "heading.page.admin.orders":"Orders",
+    "heading.main.sales.report": "Report",
+    
+
+    "---anchors----":"",
+    "anchor.main":"Dashboard",
+    "anchor.main.users":"Users",
+    "anchor.main.tags" : "Tags",
+    "anchor.main.products" : "Products",
+    "anchor.main.create.products":"Create Product",
+    "anchor.main.orders":"Orders",
+    "anchor.main.order.edit":"Edit Order",
+    "anchor.main.usersettings":"User Settings",
+    "anchor.main.user.edit":"Edit User",
+    "anchor.main.sales.report":"Report",
+
+    "---mgs----":"",
+    "msg.please.wait":"Please wait",
+
+    "---errors----":"",
+
+    "---label.button----":"",
+    "label.button.subtags" : "Subtags",
+    "label.button.submit" : "Submit",
+
+    "---label.input----":"",
+    "label.txt.common.searchonpage" : "Search On Page",
+    "label.txt-create.product-uniq.name":"Unique Number",
+    "label.txt-create.product-product.name":"Display Name",
+    "label.txt-create.product-product.main.description":"Main description",
+    "label.txt-create.product-product.sub.description":"Sub description",
+    "label.txt-create.product-product.line.description":"More description",
+    "label.txt-create.product-product.quantity.available":"Quantity available",
+    "label.txt-create.product-product.minimum.quantity":"Minimum quantity",
+    "label.txt-create.product-product.price.per.unit":"Price per unit",
+    "label.txt-create.product-product.quantity.unit":"Quantity unit",
+    "label.chk-create.product-product.is.sold.out":"Is sold out",
+    "label.chk-create.product-product.is.active":"Is active",
+
+    "label.sel-create.product-packing.styles":"Cutting Styles",
+    "label.sel-create.product-categories":"Product Categories",
+
+
+    
+
+"-----":"----"
+}

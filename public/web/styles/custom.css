@@ -1,0 +1,167 @@
+@CHARSET "UTF-8";
+
+html, body, form{ width:100%; height: 100%; min-height: 100%;}
+
+#map {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;    
+}
+.fullscreen {
+   height: 100%;
+ }
+.login-container{
+	position: absolute;
+    left:0;
+    top:0;
+    background: #4C6B4D;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+
+
+.login-footer{
+        position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    COLOR: #FFF;
+}
+
+.pointer{
+    cursor: pointer;
+}
+.required{
+    color:red;
+    font-weight: bold;
+    font-size: 12pt;
+}
+.error{
+    color:red;
+    font-weight: bold;
+}
+
+.active-indicator{
+    height: 1px;
+    width: 50px;
+    border: 5px solid #4BB132;
+}
+
+.inactive-indicator{
+    height: 1px;
+    width: 50px;
+    border: 5px solid #6E6F71;
+}
+.green{
+    color: #4BB132;
+}
+.red{
+    color: red;
+}
+.blue{
+    color:#0096C5;
+}
+
+.redbg{
+    background-color: red;
+}
+
+/*bootstrap override */
+.page-header{
+    padding-bottom: 9px;
+    margin: 0px 0 10px;
+    border-bottom: 1px solid #eee;
+}
+.breadcrumb{
+    padding: 8px 5px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -7px;
+    margin-bottom:0px;
+    background: #fff;
+}
+
+.mas-tag-container{
+    width: initial;
+    height: inherit;
+    overflow: auto;
+}
+.mas-tag-element{
+        display: inline-block;
+        margin: 1px;
+        padding: 5px;
+        background-color: #39b3d7;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        color: #fff;
+    /*float: left;*/
+}
+.mas-tag-remove{
+    font-size: 9px;
+    margin-left: 5px;
+    as: 1px solid #003399;
+    padding: 2px;
+    color: #003399;
+    cursor: pointer;
+    float: right;
+    margin-top: -5px;
+    font-weight: bolder;
+}
+.noti-bar{
+    background-color: green;
+    padding: 10px;
+    color: #fff;
+    font-weight: 600;
+    opacity: 1;
+    line-height: 20px;
+}
+
+.noti-bar.ng-hide-add, .noti-bar.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+.noti-bar.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+
+#div.ng-hide-add, #div.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+
+#div.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+
+.nv-x text {
+  display: none;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #444648;
+    border-color: #565758;
+}
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active, .btn-dark.active, .open .dropdown-toggle.btn-dark {
+    color: #fff;
+    background-color: #3c3d3e;
+    border-color: #262727;
+}
+
+.btn:active:focus, .btn.active:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}

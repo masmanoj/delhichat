@@ -1,0 +1,48 @@
+<div class="content" ng-controller="ProductsController">
+	<ol class="breadcrumb" style= "margin-bottom:0px; background-color:none;">
+	  <li><a href="#/main">{{'anchor.main'|translate}}</a></li>
+	  <li class="active">{{'anchor.main.products'|translate}}</li>
+	</ol>
+	<div class="page-header">
+	  	 <div class="row">
+            <div class="col-sm-8">
+                <h2>{{'heading.page.admin.products'|translate}} <small></small></h2>
+            </div>
+            <div class="col-md-4">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="fa fa-search"></span></div>
+                            <input ng-autofocus="true" ng-model="filterTxt" type="text" class="form-control"
+                                   placeholder="{{'label.txt.common.searchonpage' | translate}}">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+	</div>
+	<section>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Is Active</th>
+				<th>Is Sold Out</th>
+				<th><a class="btn btn-primary" href="#/product/createnew" >Create New</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="pointer" ng-repeat="product in products | filter:filterTxt" ng-click="viewProduct(product)">
+				<td>{{product.productUid}}</td>
+				<td>{{product.name}}</td>
+				<td>{{product.quantity}}</td>
+				<td><div ng-class ="{'active-indicator': product.isActive , 'inactive-indicator': !product.isActive}"> </div></td>
+				<td><div ng-class ="{'fa fa-battery-empty red': product.isSoldOut , 'fa fa-battery-full green': !product.isSoldOut}"> </div></td>
+				<td><i class="fa fa-play"></i></td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</div>
