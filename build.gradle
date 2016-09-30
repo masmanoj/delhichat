@@ -13,19 +13,10 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
-apply plugin: 'idea'
-apply plugin: 'spring-boot' 
-apply plugin: 'io.spring.dependency-management' 
-apply plugin: 'war'
-// apply plugin: 'maven'
 
 // group = 'myGroup'
 // version = '0.1-SNAPSHOT'
 
-war {
-    baseName = 'grasshoper-core'
-  //  version = '0.0.1'
-}
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -38,23 +29,24 @@ configurations {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-    // compile("org.springframework.security:spring-security-ldap:3.2.4.RELEASE")
-    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
-    compile("org.springframework:spring-context-support:4.2.0.RELEASE")
-    //compile("org.springframework:spring-web:4.2.0.RELEASE")
     compile("com.google.code.gson:gson:2.3")
-    compile("joda-time:joda-time:2.4")
-    compile('org.apache.commons:commons-lang3:3.4')
-    compile('org.apache.commons:commons-io:1.3.2')
-    compile('org.apache.commons:commons-email:1.3.3')
-    compile('org.flywaydb:flyway-core:3.0')
-    runtime("mysql:mysql-connector-java")
-    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
-    
+    compile('org.apache.commons:commons-lang3:3.0')
+    compile('com.squareup.retrofit:retrofit:1.6.1')
+    compile('com.squareup.okhttp:okhttp:2.0.0')
+    compile('com.squareup.okhttp:okhttp-urlconnection:2.0.0')
+    compile('commons-codec:commons-codec:1.10')
 }
+
+jar{
+	manifest {
+        attributes (	'Implementation-Title': 'Novopay-Collection'  ,
+        	'Implementation-Version': '2.0' ,
+         	'Main-Class': 'in.novopay.collection.batch.service.CollectionBatch')
+    }
+    baseName = "novopay-collection"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }  }
+}
+
 
 
 eclipse {
