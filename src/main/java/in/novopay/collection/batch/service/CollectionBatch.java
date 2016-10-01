@@ -32,7 +32,8 @@ public class CollectionBatch {
 	static String Referer = "https://bharatbank.idfcbank.com/novobank/app";
 	
 	public static void execute( final CollectionService service, final String authorization,
-			Integer receiptStartNum, String filename, Integer threadPoolSize){
+			Long receiptStartNum, String filename, Integer threadPoolSize,
+			Integer channelTypeId, Integer paymentTypeId){
 		ExecutorService executorService = Executors.newFixedThreadPool(threadPoolSize);
 		List<Callable<Object>> collectionPosters = new ArrayList<Callable<Object>>();
 		File collections = new File(filename);
@@ -57,7 +58,7 @@ public class CollectionBatch {
 		//fetch Otp
 		
 			JsonArray otps = service.getOtp(tenant, authorization
-				  //, Host, Referer
+				  , Host, Referer
 				  , (colls.size()+100));
 		  final List<String> otpList = new ArrayList<> ();
 		  for(int i=0; i<otps.size(); i++) {
@@ -76,7 +77,7 @@ public class CollectionBatch {
         for (long i=0; i < loopCount; i++) { 
             List<CollectionData> subList = colls.subList(fromIndex, toIndex);
             List<String> otpSubList = otpList.subList(fromIndex, toIndex);
-            CollectionPoster poster = new CollectionPoster(subList, service, receiptStartNum, authorization, otpSubList);
+            CollectionPoster poster = new CollectionPoster(subList, service, receiptStartNum, authorization, otpSubList, paymentTypeId, channelTypeId);
             collectionPosters.add(Executors.callable(poster));
             if(lastBatch)
                 break;
@@ -116,21 +117,24 @@ public class CollectionBatch {
 		String usrname = prop.getProperty("username");
 		String password = prop.getProperty("password");
 		String filename =userHome + "/" +  prop.getProperty("filename");
-		Integer receiptStartNum = Integer.parseInt(prop.getProperty("receiptStartNum"));
+		Long receiptStartNum = Long.parseLong(prop.getProperty("receiptStartNum"));
 		Integer threadPoolSize = Integer.parseInt(prop.getProperty("threadPoolSize"));
 		String url = prop.getProperty("url");
 		Referer = prop.getProperty("referer");
 		Host = prop.getProperty("host");  
+		Integer channelTypeId= Integer.parseInt(prop.getProperty("channelTypeId"));
+		Integer paymentTypeId=Integer.parseInt(prop.getProperty("paymentTypeId"));
+		Integer isLogEnabled= Integer.parseInt(prop.getProperty("isLogenabled"));
 		
-		final CollectionService service  =  CollectionWebHook.createCollectionService(url);
-		  JsonObject jsonResponse = service.getRsaKey(tenant);
+		final CollectionService service  =  CollectionWebHook.createCollectionService(url, isLogEnabled);
+		  JsonObject jsonResponse = service.getRsaKey(Host, Referer, tenant);
 		  
 		  String pem =  jsonResponse.get("keyValue").getAsString();
 		  String encdPassword = encMyPassword(pem, password);
 		  JsonObject authReq = new JsonObject();
 		  authReq.addProperty("username", usrname);
 		  authReq.addProperty("password", encdPassword);
-		  JsonObject auth = service.authenticate(tenant, authReq);
+		  JsonObject auth = service.authenticate(Host, Referer, tenant, authReq);
 		  
 		  String sessionKey = auth.get("sessionKey").getAsString();
 		  
@@ -139,7 +143,7 @@ public class CollectionBatch {
 		  
 		  
 		  
-		  execute(service, authorization, receiptStartNum, filename, threadPoolSize);
+		  execute(service, authorization, receiptStartNum, filename, threadPoolSize, channelTypeId, paymentTypeId );
 		  
           //System.out.println(otps.toString());
 		  

@@ -20,10 +20,14 @@ public interface CollectionService {
 	
     @GET("/crypt/getpublicrsakey")
     JsonObject getRsaKey(
+    		@Header(HOST) String host,
+    		@Header(Referer) String referer,
     		@Header(TenantId) String tenantId
     		);
     @POST("/authentication")
     JsonObject authenticate(
+    		@Header(HOST) String host,
+    		@Header(Referer) String referer,
     		@Header(TenantId) String tenantId,
     		@Body JsonElement request
     		);
@@ -33,8 +37,8 @@ public interface CollectionService {
     		@Header(TenantId) String tenantId,
     		@Header(Authorization) String authorization,
     		@Header("OTP") String otp,
-    		//@Header(HOST) String host,
-    		//@Header(Referer) String referer,
+    		@Header(HOST) String host,
+    		@Header(Referer) String referer,
     		@Query("command") String command,
     		@Path("loanId") Long loanId,
     		@Body JsonElement request
@@ -44,8 +48,8 @@ public interface CollectionService {
     JsonArray getOtp(
     		@Header(TenantId) String tenantId,
     		@Header(Authorization) String authorization,
-    		//@Header(HOST) String host,
-    		//@Header(Referer) String referer,
+    		@Header(HOST) String host,
+    		@Header(Referer) String referer,
     		@Query("size") Integer otpSize
     		
     		);

@@ -11,18 +11,26 @@ public class CollectionPoster implements Runnable {
 	private List<CollectionData> collections;
 	private final CollectionService service;
 	private final String authorization; 
-	private Integer receiptStartNum;
+	private Long  receiptStartNum;
 	private final List<String> otps;
+	private final Integer paymentTypeId ;
+	private final Integer channelTypeId ;
 	public CollectionPoster(final List<CollectionData> collections,
 			final CollectionService service,
-			final Integer receiptStartNum,
+			final Long receiptStartNum,
 			final String authorization,
-			final List<String> otps) {
+			final List<String> otps,
+			final Integer paymentTypeId,
+			final Integer channelTypeId) {
 		this.collections = collections;
 		this.service = service;
 		this.receiptStartNum = receiptStartNum;
 		this.authorization = authorization;
 		this.otps = otps;
+		this.paymentTypeId =paymentTypeId;
+		this.channelTypeId = channelTypeId;
+		
+		
 	}
 
 	@Override
@@ -31,8 +39,8 @@ public class CollectionPoster implements Runnable {
 		for(CollectionData col : collections) {
 			
 	           JsonObject json = new JsonObject();
-	           json.addProperty("paymentTypeId", 408);
-	           json.addProperty("channelTypeId", 1048);
+	           json.addProperty("paymentTypeId", paymentTypeId);
+	           json.addProperty("channelTypeId", this.channelTypeId);
 	           json.addProperty("transactionAmount", col.getAmount());
 	           json.addProperty("transactionDate", col.getTransDate());
 	           json.addProperty("receiptNumber", receiptStartNum++);
@@ -42,7 +50,7 @@ public class CollectionPoster implements Runnable {
 	           Response response =    this.service.postCollection(CollectionBatch.tenant,
 	        		   this.authorization, 
 	        		   otps.get(i++), 
-	        		  //, CollectionBatch.Host, CollectionBatch.Referer 
+	        		   CollectionBatch.Host, CollectionBatch.Referer, 
 	        		   command, 
 	        		   col.getLoanId(), 
 	        		   json);
